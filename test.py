@@ -45,7 +45,7 @@ class DTMGenerator:
         self.n_v = len(self.vocab)
 
     def _build_dtm(self, sub_func, tokenizer):
-        DTM = np.zeros((self.n_d, self.n_v))
+        DTM = np.zeros((self.n_d, self.n_v), dtype=np.int8)
         for r, doc in enumerate(self.df):
             if self.is_lower:
                 doc = doc.lower()
@@ -76,4 +76,11 @@ if __name__ == '__main__':
     DTM = dtmgen.forward(sub_func, tokenizer, True)
     print(DTM)
 
+    #    cute  kitti  eat  rice  cake  hamster  bread
+    # 0     1      1    0     0     0        0      0
+    # 1     0      0    1     1     1        0      0
+    # 2     0      1    0     0     0        1      0
+    # 3     0      0    1     0     0        0      1
+    # 4     0      0    0     1     1        0      1
+    # 5     1      0    1     0     1        1      1
     
